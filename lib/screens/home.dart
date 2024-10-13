@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tomatick/widgets/timer_card.dart';
+import 'package:tomatick/widgets/time_options.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -34,6 +35,8 @@ class Home extends StatelessWidget {
             children: [
               SizedBox(height: 15),
               TimerCard(),
+              SizedBox(height: 15),
+              TimeOptions(),
               SizedBox(height: 15),
             ],
           ),
