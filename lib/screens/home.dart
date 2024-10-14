@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tomatick/widgets/progress_widget.dart';
+import 'package:tomatick/widgets/time_controller.dart';
 import 'package:tomatick/widgets/timer_card.dart';
 import 'package:tomatick/widgets/time_options.dart';
 
@@ -33,11 +35,14 @@ class Home extends StatelessWidget {
           alignment: Alignment.center,
           child: const Column(
             children: [
-              SizedBox(height: 15),
+              SizedBox(height: 32),
               TimerCard(),
-              SizedBox(height: 15),
+              SizedBox(height: 32),
               TimeOptions(),
-              SizedBox(height: 15),
+              SizedBox(height: 48),
+              TimeController(),
+              SizedBox(height: 48),
+              ProgressWidget()
             ],
           ),
         ),
