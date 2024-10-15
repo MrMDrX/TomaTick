@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:tomatick/provider/timer_service.dart';
 
 class TimerCard extends StatelessWidget {
   const TimerCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TimerService>(context);
+    final seconds = provider.currentDuration % 60;
     return Column(
       children: [
         Text("FOCUS",
@@ -35,7 +39,7 @@ class TimerCard extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  "25",
+                  (provider.currentDuration ~/ 60).toString(),
                   style: GoogleFonts.montserrat(
                     fontSize: 70,
                     color: Colors.redAccent,
@@ -71,7 +75,7 @@ class TimerCard extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  "00",
+                  seconds == 0 ? "00" : seconds.round().toString(),
                   style: GoogleFonts.montserrat(
                     fontSize: 70,
                     color: Colors.redAccent,

@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tomatick/provider/timer_service.dart';
 
 class TimeController extends StatefulWidget {
   const TimeController({super.key});
@@ -10,14 +14,23 @@ class TimeController extends StatefulWidget {
 class _TimeControllerState extends State<TimeController> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TimerService>(context, listen: false);
     return Container(
       width: 100,
       height: 100,
       decoration: BoxDecoration(color: Colors.black26, shape: BoxShape.circle),
       child: Center(
         child: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.play_arrow),
+          onPressed: () {
+            if (provider.isRunning) {
+              provider.pause();
+            } else {
+              provider.start();
+            }
+          },
+          icon: Provider.of<TimerService>(context).isRunning
+              ? Icon(Icons.pause)
+              : Icon(Icons.play_arrow),
           color: Colors.white,
           iconSize: 55,
         ),

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tomatick/provider/timer_service.dart';
 import 'package:tomatick/screens/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider<TimerService>(
+    create: (context) => TimerService(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

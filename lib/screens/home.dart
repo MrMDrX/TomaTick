@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tomatick/provider/timer_service.dart';
 import 'package:tomatick/widgets/progress_widget.dart';
 import 'package:tomatick/widgets/time_controller.dart';
 import 'package:tomatick/widgets/timer_card.dart';
@@ -21,7 +23,9 @@ class Home extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<TimerService>(context, listen: false).reset();
+            },
             icon: const Icon(
               Icons.refresh,
               color: Colors.white,
