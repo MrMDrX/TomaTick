@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tomatick/provider/timer_service.dart';
@@ -18,7 +16,8 @@ class _TimeControllerState extends State<TimeController> {
     return Container(
       width: 100,
       height: 100,
-      decoration: BoxDecoration(color: Colors.black26, shape: BoxShape.circle),
+      decoration:
+          const BoxDecoration(color: Colors.black26, shape: BoxShape.circle),
       child: Center(
         child: IconButton(
           onPressed: () {
@@ -29,8 +28,8 @@ class _TimeControllerState extends State<TimeController> {
             }
           },
           icon: Provider.of<TimerService>(context).isRunning
-              ? Icon(Icons.pause)
-              : Icon(Icons.play_arrow),
+              ? const Icon(Icons.pause)
+              : const Icon(Icons.play_arrow),
           color: Colors.white,
           iconSize: 55,
         ),

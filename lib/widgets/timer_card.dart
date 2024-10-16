@@ -21,7 +21,7 @@ class TimerCard extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.w700,
             )),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -36,7 +36,7 @@ class TimerCard extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 4,
                     blurRadius: 4,
-                    offset: Offset(0, 2),
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
@@ -53,7 +53,7 @@ class TimerCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Text(
               ":",
               style: GoogleFonts.montserrat(
@@ -62,7 +62,7 @@ class TimerCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Container(
               width: MediaQuery.of(context).size.width / 3.2,
               height: 170,
@@ -74,7 +74,7 @@ class TimerCard extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 4,
                     blurRadius: 4,
-                    offset: Offset(0, 2),
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
