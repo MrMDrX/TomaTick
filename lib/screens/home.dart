@@ -15,11 +15,12 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<TimerService>(context);
     final colors = renderColor(provider.currentState);
+    final screenWidth = MediaQuery.of(context).size.width;
 
     void showGoalReachedSnackBar() {
       final snackBar = SnackBar(
         content: Text(
-          "Goal reached!Congratulations! You've reached your goal!",
+          "Congratulations! You've reached your goal!",
           style: GoogleFonts.montserrat(
               fontSize: 18, color: Colors.white, fontWeight: FontWeight.normal),
         ),
@@ -38,33 +39,40 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colors.bgColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: colors.appBarColor,
-        title: Text(
-          'TOMATICK',
-          style: GoogleFonts.montserrat(
-              fontSize: 25,
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 4),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Provider.of<TimerService>(context, listen: false).reset();
-            },
-            icon: const Icon(
-              Icons.refresh,
-              color: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(screenWidth * 0.14),
+        child: AppBar(
+          elevation: 0,
+          backgroundColor: colors.appBarColor,
+          title: Container(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'TOMATICK',
+              style: GoogleFonts.montserrat(
+                  fontSize: screenWidth * 0.07,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 4),
             ),
-            iconSize: 40,
           ),
-        ],
+          actions: [
+            IconButton(
+              onPressed: () {
+                provider.reset();
+              },
+              icon: const Icon(
+                Icons.refresh,
+                color: Colors.white,
+              ),
+              iconSize: screenWidth * 0.1,
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.center,
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
           child: const Column(
             children: [
               SizedBox(height: 32),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-List selectableTimes = [
+const List<String> selectableTimes = [
   "300",
   "600",
   "900",

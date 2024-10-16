@@ -27,9 +27,7 @@ class _TimeControllerState extends State<TimeController> {
               provider.start();
             }
           },
-          icon: Provider.of<TimerService>(context).isRunning
-              ? const Icon(Icons.pause)
-              : const Icon(Icons.play_arrow),
+          icon: Icon(provider.isRunning ? Icons.pause : Icons.play_arrow),
           color: Colors.white,
           iconSize: 55,
         ),

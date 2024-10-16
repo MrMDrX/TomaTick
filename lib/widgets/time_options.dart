@@ -10,6 +10,9 @@ class TimeOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TimerService>(context);
+    final colors = renderColor(provider.currentState);
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       controller: ScrollController(initialScrollOffset: 150),
@@ -19,8 +22,8 @@ class TimeOptions extends StatelessWidget {
             onTap: () => provider.startTimer(double.parse(time)),
             child: Container(
               margin: const EdgeInsets.only(left: 10),
-              height: 50,
-              width: 70,
+              height: screenWidth * 0.1, // Proportional height
+              width: screenWidth * 0.15, // Proportional width
               decoration: int.parse(time) == provider.selectedTime
                   ? BoxDecoration(
                       color: Colors.white,
@@ -37,9 +40,9 @@ class TimeOptions extends StatelessWidget {
                 child: Text(
                   (int.parse(time) ~/ 60).toString(),
                   style: GoogleFonts.montserrat(
-                    fontSize: 20,
+                    fontSize: screenWidth * 0.05, // Proportional font size
                     color: int.parse(time) == provider.selectedTime
-                        ? Colors.redAccent.shade100
+                        ? colors.bgColor
                         : Colors.white,
                     fontWeight: FontWeight.w700,
                   ),

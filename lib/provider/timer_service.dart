@@ -17,10 +17,11 @@ class TimerService extends ChangeNotifier {
     }
     isRunning = true;
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (currentDuration == 0) {
+      if (currentDuration <= 0) {
         handleNextRound();
+      } else {
+        currentDuration--;
       }
-      currentDuration--;
       notifyListeners();
     });
   }
