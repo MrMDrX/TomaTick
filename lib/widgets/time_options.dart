@@ -22,8 +22,8 @@ class TimeOptions extends StatelessWidget {
             onTap: () => provider.startTimer(double.parse(time)),
             child: Container(
               margin: const EdgeInsets.only(left: 10),
-              height: screenWidth * 0.1, // Proportional height
-              width: screenWidth * 0.15, // Proportional width
+              height: screenWidth * 0.1,
+              width: screenWidth * 0.15,
               decoration: int.parse(time) == provider.selectedTime
                   ? BoxDecoration(
                       color: Colors.white,
@@ -40,7 +40,7 @@ class TimeOptions extends StatelessWidget {
                 child: Text(
                   (int.parse(time) ~/ 60).toString(),
                   style: GoogleFonts.montserrat(
-                    fontSize: screenWidth * 0.05, // Proportional font size
+                    fontSize: screenWidth * 0.05,
                     color: int.parse(time) == provider.selectedTime
                         ? colors.bgColor
                         : Colors.white,
