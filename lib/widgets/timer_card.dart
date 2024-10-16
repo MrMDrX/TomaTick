@@ -34,7 +34,7 @@ class TimerCard extends StatelessWidget {
             Text(
               ":",
               style: GoogleFonts.montserrat(
-                fontSize: screenWidth * 0.06,
+                fontSize: screenWidth * 0.12,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),

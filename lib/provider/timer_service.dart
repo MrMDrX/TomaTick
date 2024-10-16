@@ -57,29 +57,31 @@ class TimerService extends ChangeNotifier {
   void handleNextRound() {
     if (currentState == 'FOCUS TIME') {
       rounds++;
-      if (rounds < 3) {
-        currentState = 'BREAK TIME';
-        currentDuration = shortBreakDuration;
-      } else {
-        currentState = 'LONG BREAK TIME';
-        currentDuration = longBreakDuration;
+      goal++; // Increment the goal every time a focus round is completed
+
+      if (goal >= 12) {
+        // Check if goal is reached after 12 rounds
+        goalReached = true;
+        notifyListeners();
+        reset();
+        return;
       }
-    } else if (currentState == 'BREAK TIME' ||
-        currentState == 'LONG BREAK TIME') {
+
+      currentState = 'BREAK TIME';
+      currentDuration = shortBreakDuration;
+    } else if (currentState == 'BREAK TIME') {
       currentState = 'FOCUS TIME';
       currentDuration = focusDuration;
-      // Reset rounds if coming back from long break
-      if (currentState == 'LONG BREAK TIME') {
-        rounds = 0;
-      }
+    } else if (currentState == 'LONG BREAK TIME') {
+      currentState = 'FOCUS TIME';
+      currentDuration = focusDuration;
+      rounds = 0; // Reset rounds after long break
     }
 
-    // Increment goal if necessary
-    if (goal < 12) {
-      goal++;
-    } else {
-      goalReached = true;
-      reset();
+    // Handle long breaks after every 4 focus sessions
+    if (rounds % 4 == 0 && rounds > 0) {
+      currentState = 'LONG BREAK TIME';
+      currentDuration = longBreakDuration;
     }
 
     notifyListeners();

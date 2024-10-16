@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
     void showGoalReachedSnackBar() {
       final snackBar = SnackBar(
         content: Text(
-          "Congratulations! You've reached your goal!",
+          "Congratulations🥳! You've reached your goal!",
           style: GoogleFonts.montserrat(
               fontSize: 18, color: Colors.white, fontWeight: FontWeight.normal),
         ),
