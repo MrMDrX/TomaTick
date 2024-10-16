@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:tomatick/provider/timer_service.dart';
+import 'package:tomatick/utils/utils.dart';
 
 class TimerCard extends StatelessWidget {
   const TimerCard({super.key});
@@ -10,9 +11,11 @@ class TimerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<TimerService>(context);
     final seconds = provider.currentDuration % 60;
+    final minutes = (provider.currentDuration ~/ 60);
+    final colors = renderColor(provider.currentState);
     return Column(
       children: [
-        Text("FOCUS",
+        Text(provider.currentState,
             style: GoogleFonts.montserrat(
               fontSize: 35,
               color: Colors.white,
@@ -39,10 +42,12 @@ class TimerCard extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  (provider.currentDuration ~/ 60).toString(),
+                  minutes < 10
+                      ? "0${minutes.round()}"
+                      : minutes.round().toString(),
                   style: GoogleFonts.montserrat(
                     fontSize: 70,
-                    color: Colors.redAccent,
+                    color: colors.bgColor,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -75,10 +80,12 @@ class TimerCard extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  seconds == 0 ? "00" : seconds.round().toString(),
+                  seconds < 10
+                      ? "0${seconds.round()}"
+                      : seconds.round().toString(),
                   style: GoogleFonts.montserrat(
                     fontSize: 70,
-                    color: Colors.redAccent,
+                    color: colors.bgColor,
                     fontWeight: FontWeight.w700,
                   ),
                 ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:tomatick/provider/timer_service.dart';
+import 'package:tomatick/utils/utils.dart';
 import 'package:tomatick/widgets/progress_widget.dart';
 import 'package:tomatick/widgets/time_controller.dart';
 import 'package:tomatick/widgets/timer_card.dart';
@@ -11,15 +13,41 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TimerService>(context);
+    final colors = renderColor(provider.currentState);
+
+    void showGoalReachedSnackBar() {
+      final snackBar = SnackBar(
+        content: Text(
+          "Goal reached!Congratulations! You've reached your goal!",
+          style: GoogleFonts.montserrat(
+              fontSize: 18, color: Colors.white, fontWeight: FontWeight.normal),
+        ),
+        backgroundColor: Colors.greenAccent.shade400,
+        behavior: SnackBarBehavior.floating,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+
+    if (provider.goalReached) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showGoalReachedSnackBar();
+      });
+      provider.goalReached = false;
+    }
+
     return Scaffold(
-      backgroundColor: Colors.redAccent.shade100,
+      backgroundColor: colors.bgColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.redAccent,
-        title: const Text(
+        backgroundColor: colors.appBarColor,
+        title: Text(
           'TOMATICK',
-          style: TextStyle(
-              fontSize: 25, color: Colors.white, fontWeight: FontWeight.w700),
+          style: GoogleFonts.montserrat(
+              fontSize: 25,
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 4),
         ),
         actions: [
           IconButton(
